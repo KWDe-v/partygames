@@ -20,8 +20,12 @@ final class Session
         ini_set('session.use_only_cookies', '1');
         ini_set('session.use_trans_sid', '0');
         ini_set('session.cookie_httponly', '1');
-        ini_set('session.sid_length', '48');
-        ini_set('session.sid_bits_per_character', '6');
+        // session.sid_length / sid_bits_per_character foram descontinuados no PHP 8.4 (o padrão
+        // atual já gera IDs seguros). Só os definimos em versões antigas para evitar o aviso.
+        if (PHP_VERSION_ID < 80400) {
+            ini_set('session.sid_length', '48');
+            ini_set('session.sid_bits_per_character', '6');
+        }
         ini_set('session.gc_maxlifetime', (string) Config::int('app.session_lifetime', 86400));
 
         session_name('OQVFSESSID');
