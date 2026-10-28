@@ -11,6 +11,8 @@ return [
     'tagline' => 'Investigação em equipe',
     'description' => 'Um caso, quatro suspeitos e pistas que aparecem aos poucos. Cada um tem um papel — detetive, perito, jornalista ou investigador. Interrogue, vasculhe e acuse o culpado.',
     'players' => [2, 10],
+    // Melhor com conversa por voz: o catálogo mostra a recomendação de jogar em call.
+    'call' => true,
     'duration' => '15–30 min',
     'color' => '#e84a5f',
     'cover' => 'cover.svg',

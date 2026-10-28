@@ -11,6 +11,8 @@ return [
     'tagline' => 'Julgamentos absurdos',
     'description' => 'Um caso ridículo, um réu, um promotor e uma defesa. Testemunhas depõem e o júri decide em segredo: culpado ou inocente?',
     'players' => [3, 12],
+    // Melhor com conversa por voz: o catálogo mostra a recomendação de jogar em call.
+    'call' => true,
     'duration' => '10–25 min',
     'color' => '#c9a227',
     'cover' => 'cover.svg',

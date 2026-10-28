@@ -46,6 +46,12 @@
         // Mudou o turno ou a fase: limpa os formulários.
         const key = g.round.id + ':' + (current ? current.id : '') + ':' + phase + ':' + g.log.length;
         const fresh = key !== local.turnKey;
+        if (fresh && local.turnKey && local.logLen !== undefined && g.log.length > local.logLen && g.log[0].type === 'guess') {
+            R.sfx.play(g.log[0].correct ? 'win' : 'wrong');
+        } else if (fresh && g.my_turn) {
+            R.sfx.play('clue');
+        }
+        local.logLen = g.log.length;
         local.turnKey = key;
         if (fresh) {
             R.ui.formError($('#wa-ask-form'), '');
@@ -94,6 +100,8 @@
 
     window.PartyGames.registerGame('quem-sou-eu', {
         phases: { ask: 'Pergunta', answer: 'Respostas', reveal: 'Revelação' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { ask: null, answer: 'question', reveal: 'reveal' },
         init(R) {
             const submit = (formSel, inputSel, op, empty) => {
                 $(formSel).addEventListener('submit', async (ev) => {

@@ -56,6 +56,7 @@ $title = $platform . ' — jogos pra jogar com a galera';
         <span class="chip chip--phase" id="tb-phase">Lobby</span>
     </div>
     <div class="topbar__actions">
+        <button type="button" class="btn btn--ghost btn--sm btn--icon" id="btn-sound" aria-pressed="false" title="Desativar sons">🔊</button>
         <button type="button" class="btn btn--ghost btn--sm" data-howto="" id="btn-howto" title="Regras e instruções do jogo">Como Jogar?</button>
         <button type="button" class="btn btn--ghost btn--sm" id="btn-score" hidden>Placar</button>
         <button type="button" class="btn btn--ghost btn--sm" id="btn-end" hidden>Encerrar</button>
@@ -90,6 +91,9 @@ $title = $platform . ' — jogos pra jogar com a galera';
                         <li><?= e($g['pmin']) ?>–<?= e($g['pmax']) ?> jogadores</li>
                         <?php if ($g['duration'] !== ''): ?><li><?= e($g['duration']) ?></li><?php endif; ?>
                     </ul>
+                    <?php if (!empty($g['call'])): ?>
+                    <p class="game-card__call"><span aria-hidden="true">🎧</span> Para melhor jogabilidade, recomendamos jogar em call.</p>
+                    <?php endif; ?>
                 </div>
                 <div class="game-card__actions">
                     <button type="button" class="btn btn--secondary" data-howto="<?= e($slug) ?>">Como Jogar?</button>
@@ -322,6 +326,7 @@ foreach ($games as $slug => $g): $h = (array) $g['how_to']; ?>
 <template id="howto-<?= e($slug) ?>" data-name="<?= e($g['name']) ?>" data-cover="<?= e($g['assets_url'] . $g['cover']) ?>?v=<?= e(APP_VERSION) ?>">
     <p class="howto__goal"><strong>Objetivo:</strong> <?= e($h['goal'] ?? $g['description']) ?></p>
     <p class="howto__meta"><?= e($g['pmin']) ?>–<?= e($g['pmax']) ?> jogadores<?= $g['duration'] !== '' ? ' · ' . e($g['duration']) : '' ?></p>
+    <?php if (!empty($g['call'])): ?><p class="howto__call">🎧 Para melhor jogabilidade, recomendamos jogar em call.</p><?php endif; ?>
     <?php foreach ($howtoSections as $key => $label): if (!empty($h[$key])): ?>
     <h3 class="howto__h"><?= e($label) ?></h3>
     <<?= $key === 'steps' ? 'ol' : 'ul' ?> class="howto__list howto__list--<?= e($key) ?>">
@@ -355,6 +360,7 @@ foreach ($games as $slug => $g): $h = (array) $g['how_to']; ?>
 </dialog>
 
 <noscript><p class="noscript">Esta página precisa de JavaScript habilitado.</p></noscript>
+<script src="assets/js/sfx.js?v=<?= e(APP_VERSION) ?>" defer></script>
 <script src="assets/js/platform.js?v=<?= e(APP_VERSION) ?>" defer></script>
 <?php foreach ($games as $g): if (is_file($g['path'] . '/assets/game.js')): ?>
 <script src="<?= e($g['assets_url']) ?>game.js?v=<?= e(APP_VERSION) ?>" defer></script>

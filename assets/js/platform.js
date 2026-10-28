@@ -27,6 +27,8 @@
     const API_URL = 'api/index.php';
     const STORE_KEY = 'partygames.rejoin';
     const RING = 119.38;
+    const noop = { play() {}, setMuted() {}, muted: true };
+    const sfx = window.PartyGamesSfx || noop;
 
     function h(tag, attrs, children) {
         const el = document.createElement(tag);
@@ -143,7 +145,13 @@
 
     /** Ação do jogo da sala atual (o servidor valida tudo). */
     function gameAction(op, body) {
-        return api('game', { query: { op: op }, body: body || {} });
+        return api('game', { query: { op: op }, body: body || {} }).then((d) => {
+            if (op !== 'skip') sfx.play('send');
+            return d;
+        }, (e) => {
+            sfx.play('error');
+            throw e;
+        });
     }
 
     async function refreshSession() {
@@ -478,6 +486,7 @@
         const saved = store.get();
         if (saved && saved.nickname !== s.me.nickname) store.set(Object.assign(saved, { nickname: s.me.nickname }));
 
+        playTransitionSounds(prev, s, mod);
         if (room.status === 'lobby') {
             renderLobby(s);
             show('lobby');
@@ -491,6 +500,23 @@
             if (screen) show(screen);
         }
         updateTimers();
+    }
+
+    /** Sons comuns: entrada/saída de jogadores, início, troca de fase e fim de partida. */
+    function playTransitionSounds(prev, s, mod) {
+        if (!prev || !prev.room || prev.room.code !== s.room.code) return;
+        const was = prev.room;
+        const room = s.room;
+        if (was.status === 'lobby' && room.status === 'playing') { sfx.play('start'); return; }
+        if (was.status === 'playing' && room.status !== 'playing') { sfx.play(s.match ? 'win' : 'leave'); return; }
+        if (room.status === 'playing' && (was.phase !== room.phase || was.round_number !== room.round_number)) {
+            const custom = mod && mod.sounds ? mod.sounds[room.phase] : undefined;
+            if (custom !== null) sfx.play(custom || 'whoosh');
+        }
+        const before = prev.players ? prev.players.length : 0;
+        const now = s.players ? s.players.length : 0;
+        if (now > before) sfx.play('join');
+        else if (now < before) sfx.play('leave');
     }
 
     function renderLobby(s) {
@@ -574,8 +600,15 @@
         timer.classList.toggle('is-long', secs >= 100);
         $('.timer__bar', timer).style.strokeDashoffset = String(RING * (1 - Math.min(1, remaining / total)));
         timer.classList.toggle('is-urgent', secs <= 10);
+        // Tic-tac nos últimos 10 segundos (um som por segundo; mais agudo nos 3 finais).
+        const tickKey = sec.id + ':' + ends + ':' + secs;
+        if (secs >= 1 && secs <= 10 && remaining > 0 && app.tickKey !== tickKey && !timer.classList.contains('is-off')) {
+            app.tickKey = tickKey;
+            sfx.play(secs <= 3 ? 'tickUrgent' : (secs % 2 ? 'tick' : 'tock'));
+        }
 
         if (remaining <= 0 && app.expiredKey !== sec.id + ':' + ends) {
+            if (now - ends < 1500) sfx.play('timeUp'); // não toca ao abrir uma fase que já tinha vencido
             app.expiredKey = sec.id + ':' + ends;
             if (mod && mod.onDeadline) mod.onDeadline(sec, PartyGames);
             pollNow(); // o servidor faz a transição nesta consulta
@@ -825,6 +858,19 @@
             }
         });
 
+        const soundBtn = $('#btn-sound');
+        const syncSound = () => {
+            soundBtn.textContent = sfx.muted ? '🔇' : '🔊';
+            soundBtn.title = sfx.muted ? 'Ativar sons' : 'Desativar sons';
+            soundBtn.setAttribute('aria-pressed', sfx.muted ? 'true' : 'false');
+        };
+        syncSound();
+        soundBtn.addEventListener('click', () => {
+            sfx.setMuted(!sfx.muted);
+            syncSound();
+            sfx.play('click');
+        });
+
         $('#btn-leave').addEventListener('click', async () => {
             if (!(await confirmDialog('Sair da sala? Você pode entrar novamente com o código da sala.', 'Sair'))) return;
             try { await api('leave_room', { body: {} }); } catch (e) { /* sai localmente mesmo assim */ }
@@ -896,6 +942,7 @@
         refresh: refresh,
         serverNow: serverNow,
         state: () => app.state,
+        sfx: sfx,
         drafts: drafts,
         ui: ui,
     };

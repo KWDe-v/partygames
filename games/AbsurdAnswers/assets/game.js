@@ -77,6 +77,8 @@
 
     window.PartyGames.registerGame('resposta-absurda', {
         phases: { answering: 'Respostas', voting: 'Votação', reveal: 'Resultado' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { answering: 'question', reveal: 'drumroll' },
         init(R) {
             const ta = $('#ab-text');
             R.ui.bindTextarea(ta);

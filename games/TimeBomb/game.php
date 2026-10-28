@@ -13,6 +13,8 @@ return [
     'tagline' => 'Responda antes que exploda',
     'description' => 'Uma categoria e uma bomba passando de mão em mão. Diga algo da categoria antes que o tempo acabe — ou boom!',
     'players' => [2, 12],
+    // Melhor com conversa por voz: o catálogo mostra a recomendação de jogar em call.
+    'call' => true,
     'duration' => '5–15 min',
     'color' => '#ff3b3b',
     'cover' => 'cover.svg',

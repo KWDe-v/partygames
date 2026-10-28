@@ -75,6 +75,8 @@
 
     window.PartyGames.registerGame('quem-e-mais-provavel', {
         phases: { voting: 'Votação', reveal: 'Resultado' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { voting: 'question', reveal: 'drumroll' },
         render(s, prev, R) {
             if (!s.game || !s.game.round) return null;
             return s.room.phase === 'reveal' ? renderReveal(s, R) : renderVote(s, R);

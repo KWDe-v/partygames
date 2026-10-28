@@ -132,6 +132,8 @@
 
     window.PartyGames.registerGame('o-infiltrado', {
         phases: { roles: 'Papéis', hints: 'Dicas', discussion: 'Discussão', voting: 'Votação', reveal: 'Revelação' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { roles: 'secret', voting: 'suspense', reveal: 'drumroll' },
         init(R) {
             const ta = $('#if-hint-text');
             R.ui.bindTextarea(ta);

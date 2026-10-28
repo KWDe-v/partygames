@@ -3,6 +3,7 @@
     'use strict';
     const $ = (s, r) => (r || document).querySelector(s);
     const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+    let verdictPlayed = null;
     const STAGE = {
         briefing: ['Sessão aberta', 'Leia seu papel e o caso.'],
         accusation: ['Acusação', 'A promotoria apresenta o caso.'],
@@ -78,6 +79,12 @@
         const sec = $('#tr-reveal');
         common(sec, g, R);
         $('#tr-verdict').classList.toggle('is-guilty', r.verdict === 'culpado');
+        if (verdictPlayed !== g.round.id) {
+            verdictPlayed = g.round.id;
+            R.sfx.play('drumroll');
+            R.sfx.play('gavel', 1.0);
+            R.sfx.play(r.verdict === 'culpado' ? 'guilty' : 'innocent', 1.4);
+        }
         $('#tr-verdict-word').textContent = r.verdict === 'culpado' ? 'CULPADO' : 'INOCENTE';
         $('#tr-verdict-count').textContent = r.guilty + ' voto(s) culpado · ' + r.innocent + ' voto(s) inocente' + (r.by_judge ? ' · desempate do juiz' : '');
         $('#tr-verdict-truth').textContent = 'A verdade: ' + r.reu + ' era ' + r.truth + '.';
@@ -88,6 +95,8 @@
 
     window.PartyGames.registerGame('o-tribunal', {
         phases: { briefing: 'Sessão aberta', accusation: 'Acusação', defense: 'Defesa', testimony: 'Depoimentos', final: 'Palavra do réu', voting: 'Júri', reveal: 'Veredito' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { briefing: 'gavel', accusation: 'gavel', defense: 'gavel', testimony: 'gavel', final: 'gavel', voting: 'suspense', reveal: null },
         init(R) {
             const ta = $('#tr-text');
             R.ui.bindTextarea(ta);

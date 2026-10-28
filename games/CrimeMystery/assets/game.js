@@ -74,6 +74,9 @@
         $('[data-progress]', sec).textContent = g.ready_count + ' de ' + g.team.length + ' prontos para acusar';
         clues($('[data-clues]', sec), g.clues || [], R);
         $('#cr-clue-count').textContent = String((g.clues || []).length);
+        const clueKey = g.round.id + ':' + (g.clues || []).length;
+        if (local.clueKey && local.clueKey.split(':')[0] === String(g.round.id) && clueKey !== local.clueKey) R.sfx.play('clue');
+        local.clueKey = clueKey;
         local.nextClueAt = g.next_clue_at;
         $('#cr-actions').textContent = g.actions_left + '/' + g.actions_total;
         $('#cr-role-line').textContent = g.my_role ? 'Você é ' + g.my_role.name + '. Cada pergunta ou busca gasta 1 ação.' : '';
@@ -198,6 +201,8 @@
 
     window.PartyGames.registerGame('quem-cometeu-o-crime', {
         phases: { briefing: 'Leitura do caso', investigation: 'Investigação', accusation: 'Acusação', reveal: 'Solução' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { briefing: 'secret', accusation: 'suspense', reveal: 'drumroll' },
         init(R) {
             const ready = async (btn) => {
                 R.ui.setLoading(btn, true);

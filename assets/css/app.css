@@ -337,6 +337,8 @@ textarea { resize: vertical; min-height: 110px; font-size: 20px; line-height: 1.
 .game-card__desc { margin: 0; color: var(--muted); font-size: 15px; }
 .game-card__meta { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .game-card__meta li { padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,.07); font-size: 13px; color: var(--muted); }
+.game-card__call, .howto__call { display: flex; align-items: center; gap: 6px; margin: 10px 0 0; padding: 6px 10px; border-radius: 10px; background: rgba(79, 195, 247, .12); border: 1px solid rgba(79, 195, 247, .35); color: #bfe9ff; font-size: 13px; font-weight: 700; }
+.btn--icon { padding: 6px 10px; line-height: 1; }
 .game-card--soon { border-style: dashed; background: rgba(255,255,255,.03); box-shadow: none; justify-content: center; }
 .game-card--soon::before { display: none; }
 .game-card--soon:hover { transform: none; }
@@ -460,6 +462,9 @@ html:has(dialog[open]) { overflow: hidden; }
     .layout { grid-template-columns: 1fr; }
     .card { padding: 20px; }
     .topbar__brand span { display: none; }
+    .topbar__actions { flex-wrap: wrap; width: 100%; }
+    .topbar__actions .btn--sm { flex: 1 1 auto; padding: 6px 10px; font-size: 13px; white-space: nowrap; }
+    .topbar__actions .btn--icon { flex: 0 0 auto; }
     .timer { width: 68px; height: 68px; }
     .timer__num { font-size: 21px; }
 }

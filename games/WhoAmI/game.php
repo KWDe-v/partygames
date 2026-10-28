@@ -16,6 +16,8 @@ return [
     'tagline' => 'Todos sabem, menos você',
     'description' => 'Cada um recebe uma identidade secreta que todos veem — menos o próprio jogador. Faça perguntas de sim ou não e descubra quem você é.',
     'players' => [2, 10],
+    // Melhor com conversa por voz: o catálogo mostra a recomendação de jogar em call.
+    'call' => true,
     'duration' => '10–20 min',
     'color' => '#4fc3f7',
     'cover' => 'cover.svg',

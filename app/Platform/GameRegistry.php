@@ -76,6 +76,7 @@ final class GameRegistry
                 'description' => '',
                 'players' => [3, 20],
                 'duration' => '',
+                'call' => false,
                 'color' => '#ff5d73',
                 'cover' => 'cover.svg',
                 'order' => 100,

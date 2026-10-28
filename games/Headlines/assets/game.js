@@ -76,6 +76,8 @@
 
     window.PartyGames.registerGame('manchete-absurda', {
         phases: { writing: 'Redação', voting: 'Votação', reveal: 'Capa' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { writing: 'type', reveal: 'press' },
         init(R) {
             R.ui.bindTextarea($('#hl-text'));
             $('#hl-form').addEventListener('submit', (ev) => {

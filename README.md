@@ -22,6 +22,10 @@ sem Composer, frameworks, WebSockets ou serviços externos. Funciona em hospedag
 | **Manchete Absurda** | 3–20 | Todos escrevem a manchete de jornal mais absurda para o tema; a mais votada vira capa. |
 | **Quem Sou Eu?** | 2–10 | Todos veem a sua identidade, menos você; descubra com perguntas de sim ou não. |
 
+**Sons.** Efeitos sintetizados no navegador (Web Audio, sem arquivos de áudio) em `assets/js/sfx.js`: tic-tac nos últimos 10 segundos de cada cronômetro, fim do tempo, entrada de jogadores, troca de fase e sons próprios de cada jogo (explosão da bomba, martelo do juiz, nova pista, mensagem no chat, acerto/erro de palpite, rotativa do jornal...). O botão 🔊 na barra superior silencia (preferência salva no aparelho). Cada jogo declara `sounds: { fase: 'nome' }` no `registerGame` e pode tocar outros com `R.sfx.play('nome')`.
+
+**Jogar em call.** Jogos com `'call' => true` no manifesto mostram no card e no "Como Jogar?" a recomendação de jogar em call (Infiltrado, Mentira ou Verdade?, Crime, Tribunal, Bomba Relógio e Quem Sou Eu?).
+
 ## Publicação (3 passos, sem instalador)
 
 1. Envie todos os arquivos para a hospedagem (raiz do domínio ou subpasta).

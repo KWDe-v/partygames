@@ -135,6 +135,8 @@
             answer_writing: 'Respostas',
             results: 'Resultados',
         },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { answer_writing: 'shuffle', results: 'reveal' },
 
         init(R) {
             const ui = R.ui;

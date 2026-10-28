@@ -4,6 +4,7 @@
     const $ = (s, r) => (r || document).querySelector(s);
     const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
     let lastTurn = null;
+    let revealed = null;
 
     function history(list, items, R) {
         list.textContent = '';
@@ -26,6 +27,9 @@
         const bomb = $('#tb-bomb');
         bomb.classList.toggle('is-mine', g.my_turn);
         if (lastTurn !== g.round.id + ':' + g.turn) {
+            const last = g.history[0];
+            if (lastTurn !== null && last) R.sfx.play(last.boom ? 'boom' : 'pass');
+            if (g.my_turn) R.sfx.play('alarm', last && last.boom ? 0.9 : 0.15);
             lastTurn = g.round.id + ':' + g.turn;
             R.ui.restartAnimation(bomb);
             const input = $('#tb-text');
@@ -54,11 +58,19 @@
         $('#tb-summary').textContent = r.answers + ' respostas antes do fim.';
         history($('#tb-final-history'), g.history, R);
         R.ui.hostSkip($('#tb-next'), s, 'reveal');
+        if (revealed !== g.round.id) {
+            revealed = g.round.id;
+            const boom = g.history[0] && g.history[0].boom;
+            if (boom) R.sfx.play('boom');
+            R.sfx.play('win', boom ? 1.1 : 0);
+        }
         return 'tb-reveal';
     }
 
     window.PartyGames.registerGame('bomba-relogio', {
         phases: { turn: 'Bomba em jogo', reveal: 'Resultado' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { turn: null, reveal: null },
         init(R) {
             $('#tb-form').addEventListener('submit', async (ev) => {
                 ev.preventDefault();

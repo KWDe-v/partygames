@@ -95,6 +95,8 @@
 
     window.PartyGames.registerGame('mentira-ou-verdade', {
         phases: { writing: 'Escrita', voting: 'Votação', reveal: 'Revelação' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { writing: 'question', reveal: 'drumroll' },
         init(R) {
             const form = $('#tl-form');
             const ta = $('#tl-text');

@@ -37,6 +37,8 @@
             ])));
             if (!g.messages.length) log.appendChild(R.ui.h('li', { class: 'muted', text: 'Ninguém falou nada ainda. Puxe o assunto!' }));
             if (atBottom || lastCount < 0) log.scrollTop = log.scrollHeight;
+            const newest = g.messages[g.messages.length - 1];
+            if (lastCount >= 0 && g.messages.length > lastCount && newest && !newest.me) R.sfx.play('message');
             lastCount = g.messages.length;
         }
 
@@ -125,6 +127,8 @@
 
     window.PartyGames.registerGame('missao-secreta', {
         phases: { briefing: 'Missão', chat: 'Bate-papo', guessing: 'Palpites', evaluation: 'Avaliação', reveal: 'Revelação' },
+        // Efeitos sonoros por fase (assets/js/sfx.js).
+        sounds: { briefing: 'secret', guessing: 'suspense', reveal: 'drumroll' },
         init(R) {
             $('#sm-form').addEventListener('submit', async (ev) => {
                 ev.preventDefault();

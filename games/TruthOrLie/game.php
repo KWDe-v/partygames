@@ -16,6 +16,8 @@ return [
     'tagline' => 'Engane seus amigos',
     'description' => 'Escreva uma afirmação sobre você — verdadeira ou inventada — e marque em segredo. Depois, adivinhe quem está mentindo.',
     'players' => [3, 16],
+    // Melhor com conversa por voz: o catálogo mostra a recomendação de jogar em call.
+    'call' => true,
     'duration' => '10–20 min',
     'color' => '#ffc145',
     'cover' => 'cover.svg',

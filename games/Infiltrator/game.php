@@ -16,6 +16,8 @@ return [
     'tagline' => 'Descubra quem não sabe a palavra',
     'description' => 'Todos recebem a palavra secreta — menos o infiltrado. Cada um dá uma dica, a turma discute e vota para desmascarar o impostor.',
     'players' => [3, 16],
+    // Melhor com conversa por voz: o catálogo mostra a recomendação de jogar em call.
+    'call' => true,
     'duration' => '10–20 min',
     'color' => '#8b6cff',
     'cover' => 'cover.svg',
