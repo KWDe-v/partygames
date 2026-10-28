@@ -5,7 +5,7 @@ if (!defined('APP_ROOT')) {
     define('APP_ROOT', dirname(__DIR__));
 }
 if (!defined('APP_VERSION')) {
-    define('APP_VERSION', '3.2.0');
+    define('APP_VERSION', '3.2.1');
 }
 
 if (PHP_VERSION_ID < 70400) {
