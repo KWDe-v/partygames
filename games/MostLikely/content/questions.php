@@ -1,0 +1,100 @@
+<?php
+/**
+ * Perguntas de "Quem é mais provável?" por categoria.
+ * Cada item é o complemento de "Quem é mais provável de ...?".
+ */
+defined('APP_ROOT') || exit;
+
+return [
+    'classicos' => [
+        'label' => 'Clássicos',
+        'items' => [
+            'ficar milionário',
+            'se tornar famoso',
+            'chegar atrasado no próprio casamento',
+            'esquecer o aniversário de um amigo',
+            'virar influenciador digital',
+            'chorar assistindo a um desenho animado',
+            'ganhar uma discussão sem ter razão',
+            'conhecer alguém famoso por acaso',
+            'mudar de país sem avisar ninguém',
+            'abrir o próprio negócio',
+            'rir em um momento sério',
+            'ler o final do livro primeiro',
+            'responder uma mensagem três dias depois',
+            'ser reconhecido na rua',
+            'lembrar de tudo que aconteceu numa festa',
+        ],
+    ],
+    'zoeira' => [
+        'label' => 'Zoeira',
+        'items' => [
+            'mandar mensagem para a pessoa errada',
+            'cair no meio da rua e fingir que nada aconteceu',
+            'rir da própria piada antes de terminar de contar',
+            'tropeçar no próprio pé',
+            'dormir no cinema',
+            'comer a comida do colega da geladeira',
+            'cantar alto no carro com o vidro aberto',
+            'perder o celular dentro de casa enquanto fala nele',
+            'dar um apelido para cada planta da casa',
+            'entrar no grupo da família só para mandar figurinha',
+            'fingir que entendeu a piada',
+            'pedir para o garçom repetir o cardápio inteiro',
+            'acenar para alguém que estava acenando para outra pessoa',
+            'mandar áudio de cinco minutos',
+            'esquecer o próprio nome de usuário',
+        ],
+    ],
+    'sobrevivencia' => [
+        'label' => 'Sobrevivência',
+        'items' => [
+            'sobreviver a um apocalipse zumbi',
+            'se perder numa trilha',
+            'ser o primeiro a desistir de um acampamento',
+            'conseguir fazer fogo sem fósforo',
+            'comer algo estranho só para provar',
+            'fazer amizade com um animal selvagem',
+            'liderar o grupo numa emergência',
+            'entrar em pânico com uma barata',
+            'trazer a mochila mais pesada para uma viagem de um dia',
+            'sobreviver uma semana sem internet',
+            'construir um abrigo com o que tiver por perto',
+            'esquecer a comida e lembrar do carregador',
+        ],
+    ],
+    'dinheiro' => [
+        'label' => 'Dinheiro e trabalho',
+        'items' => [
+            'gastar todo o salário em um dia',
+            'virar chefe da empresa',
+            'pedir demissão por mensagem',
+            'comprar algo inútil numa promoção',
+            'esquecer uma reunião importante',
+            'guardar dinheiro em vários esconderijos',
+            'ganhar na loteria e perder o bilhete',
+            'trabalhar de pijama a semana toda',
+            'negociar desconto até na farmácia',
+            'abrir uma empresa com um amigo e brigar no mês seguinte',
+            'fazer horas extras só para não ir para casa',
+            'pagar a conta de todo mundo sem perceber',
+        ],
+    ],
+    'futuro' => [
+        'label' => 'Futuro',
+        'items' => [
+            'desaparecer por uma semana sem dar notícias',
+            'morar em outro planeta',
+            'ter dez gatos',
+            'escrever um livro',
+            'aparecer na televisão',
+            'se casar primeiro',
+            'virar professor',
+            'inventar algo que todo mundo vai usar',
+            'dar a volta ao mundo',
+            'morar no campo e plantar a própria comida',
+            'ser o vizinho que reclama do barulho',
+            'contar as mesmas histórias aos 80 anos',
+        ],
+    ],
+];

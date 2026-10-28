@@ -1,0 +1,14 @@
+# Configuração local com credenciais do banco (use config/config.example.php como modelo)
+/config/config.php
+
+# Registros gerados em execução
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp

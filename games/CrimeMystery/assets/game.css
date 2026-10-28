@@ -1,0 +1,63 @@
+/* "Quem Cometeu o Crime?" — identidade: noir, vermelho escuro e papel de dossiê datilografado. */
+.theme-cr { --accent: #e84a5f; --paper: #f3e9d2; --ink: #2b2118; }
+.theme-cr .eyebrow { color: #ff8796; }
+.theme-cr .card { border-color: rgba(232, 74, 95, .35); background: linear-gradient(180deg, #2a1622, #1d1019); }
+.cr-title { font-family: "Courier New", Courier, monospace; font-weight: 900; letter-spacing: 0; }
+.cr-paper {
+    margin: 0 0 16px; padding: 22px 24px; border-radius: 6px; background: var(--paper); color: var(--ink);
+    font-family: "Courier New", Courier, monospace; font-size: 16px; line-height: 1.55;
+    box-shadow: 0 2px 0 #d8c9a6, 0 16px 40px rgba(5, 2, 20, .5); transform: rotate(-.4deg);
+}
+.cr-paper p { margin: 0; }
+.cr-intro { margin-bottom: 14px !important; }
+.cr-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 0; }
+.cr-facts div { padding: 8px 10px; border: 1px dashed #b9a57c; }
+.cr-facts dt { font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: .1em; color: #8a2a36; }
+.cr-facts dd { margin: 2px 0 0; }
+.cr-role { margin: 0 0 18px; padding: 16px 20px; border-radius: 16px; background: rgba(232, 74, 95, .14); border: 2px solid #e84a5f; text-align: center; }
+.cr-role:empty { display: none; }
+.cr-role p { margin: 0; }
+.cr-role__label { text-transform: uppercase; letter-spacing: .14em; font-size: 12px; color: #ff8796; font-weight: 800; }
+.cr-role__name { font-family: var(--font-display); font-size: 30px; margin: 2px 0 4px !important; }
+.cr-h { margin: 20px 0 10px; font-size: 18px; }
+.cr-h4 { margin: 16px 0 0; font-size: 15px; }
+.cr-suspects { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.cr-suspects--compact { grid-template-columns: 1fr; margin-top: 12px; }
+.cr-suspect { padding: 14px; border-radius: 12px; background: rgba(255,255,255,.05); border-left: 4px solid #e84a5f; }
+.cr-suspect strong { display: block; font-size: 17px; }
+.cr-suspect__role { font-size: 13px; color: #ff8796; font-weight: 700; }
+.cr-suspect p { margin: 6px 0 0; font-size: 14px; }
+.cr-suspect__meta { color: var(--muted); }
+.cr-team { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.cr-team li { padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.06); font-size: 14px; display: flex; gap: 6px; }
+.cr-team li span { color: var(--muted); }
+.cr-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; align-items: start; }
+.cr-grid > div { display: grid; gap: 16px; }
+.cr-panel summary { cursor: pointer; margin: 0; }
+.cr-clues { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.cr-clue { padding: 12px 14px; border-radius: 8px; background: var(--paper); color: var(--ink); font-family: "Courier New", Courier, monospace; }
+.cr-clue strong { font-size: 15px; }
+.cr-clue p { margin: 4px 0 0; font-size: 14px; line-height: 1.45; }
+.cr-clue.is-private { outline: 2px dashed #8a2a36; }
+.cr-clue.is-new { animation: cr-new 1.2s ease both; }
+@keyframes cr-new { 0% { transform: translateX(-12px); opacity: 0; background: #ffd9df; } 100% { transform: none; opacity: 1; } }
+.cr-tag { margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: #8a2a36; color: #fff; font-size: 11px; font-family: var(--font); }
+.cr-log { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-height: 320px; overflow: auto; }
+.cr-log li { padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,.05); font-size: 14px; }
+.cr-log li p { margin: 4px 0 0; color: #f3e9d2; font-style: italic; }
+.cr-questions { margin-top: 4px; }
+.cr-questions .choice__label { font-size: 15px; }
+.cr-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.cr-pick__item { display: grid; gap: 2px; padding: 14px; border-radius: 14px; border: 2px solid var(--line); background: rgba(255,255,255,.05); text-align: left; cursor: pointer; }
+.cr-pick__item span { font-size: 13px; color: var(--muted); }
+.cr-pick__item.is-selected { border-color: #e84a5f; background: rgba(232, 74, 95, .2); }
+.cr-verdict { text-align: center; margin: 4px 0 18px; padding: 26px; border-radius: 22px; background: radial-gradient(circle at 50% 0%, #5a1626, #1d1019); border: 2px solid #e84a5f; animation: pop .5s ease both; }
+.cr-verdict p { margin: 0; }
+.cr-verdict__label { text-transform: uppercase; letter-spacing: .2em; font-size: 13px; color: #ff8796; font-weight: 800; }
+.cr-verdict__name { font-family: var(--font-display); font-size: clamp(32px, 8vw, 54px); margin: 6px 0 !important; }
+.cr-verdict__motive { color: var(--muted); }
+.cr-accusations { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.cr-accusations li { display: grid; gap: 2px; padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,.05); }
+.cr-accusations li.is-right { background: rgba(46, 230, 197, .14); }
+.cr-accusations li span { color: var(--muted); font-size: 14px; }
+@media (max-width: 760px) { .cr-grid { grid-template-columns: 1fr; } .cr-paper { transform: none; } }

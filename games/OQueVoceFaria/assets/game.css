@@ -1,0 +1,50 @@
+/* "O que você faria se..." — estilos próprios do jogo (os componentes comuns estão em assets/css/app.css). */
+
+/* ---------- embaralhando perguntas ---------- */
+.oqvf-shuffle { text-align: center; padding: 34px 24px 30px; overflow: hidden; }
+.oqvf-shuffle__title { margin: 22px 0 6px; font-family: var(--font-display); font-size: clamp(22px, 4.5vw, 30px); letter-spacing: -.02em; }
+.oqvf-shuffle__deck { position: relative; height: 130px; }
+.oqvf-shuffle__deck span {
+    position: absolute; left: 50%; top: 8px; width: 82px; height: 114px; margin-left: -41px;
+    border-radius: 14px; background: var(--sun); border: 3px solid #fff;
+    box-shadow: 0 10px 24px rgba(5, 2, 20, .45);
+    display: grid; place-items: center;
+    animation: oqvf-deal 1.6s cubic-bezier(.45, .05, .35, 1) infinite;
+}
+.oqvf-shuffle__deck span::after { content: "?"; font-family: var(--font-display); font-size: 46px; color: #1b1140; }
+.oqvf-shuffle__deck span:nth-child(2) { background: var(--coral); animation-delay: -.32s; }
+.oqvf-shuffle__deck span:nth-child(2)::after { color: #fff; }
+.oqvf-shuffle__deck span:nth-child(3) { background: var(--mint); animation-delay: -.64s; }
+.oqvf-shuffle__deck span:nth-child(4) { background: var(--violet); animation-delay: -.96s; }
+.oqvf-shuffle__deck span:nth-child(4)::after { color: #fff; }
+.oqvf-shuffle__deck span:nth-child(5) { animation-delay: -1.28s; }
+@keyframes oqvf-deal {
+    0%   { transform: translateX(0) rotate(0deg); z-index: 5; }
+    25%  { transform: translateX(-110px) rotate(-14deg); z-index: 5; }
+    50%  { transform: translateX(0) rotate(0deg) translateY(4px); z-index: 1; }
+    75%  { transform: translateX(110px) rotate(14deg); z-index: 1; }
+    100% { transform: translateX(0) rotate(0deg); z-index: 5; }
+}
+
+.oqvf-reveal {
+    border-radius: 28px; overflow: hidden; box-shadow: var(--shadow);
+    animation: oqvf-card-in .5s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+@keyframes oqvf-card-in { from { opacity: 0; transform: translateY(30px) rotate(-2deg) scale(.95); } }
+.oqvf-reveal__q {
+    margin: 0; padding: 30px 28px; background: var(--sun); color: #1b1140;
+    font-family: var(--font-display); font-size: clamp(24px, 4.6vw, 40px); line-height: 1.12; letter-spacing: -.02em;
+    overflow-wrap: anywhere;
+}
+.oqvf-reveal__label { opacity: .7; }
+.oqvf-reveal__a {
+    margin: 0; padding: 30px 28px; background: var(--coral); color: #fff;
+    font-size: clamp(22px, 4vw, 34px); font-weight: 800; line-height: 1.2;
+    overflow-wrap: anywhere; animation: oqvf-answer-in .6s .55s ease both;
+}
+.oqvf-reveal__a::before { content: "— "; opacity: .7; }
+@keyframes oqvf-answer-in { from { opacity: 0; transform: translateY(-14px); clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+
+@media (max-width: 420px) {
+    .oqvf-reveal__q, .oqvf-reveal__a { padding: 22px 20px; }
+}

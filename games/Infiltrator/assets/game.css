@@ -1,0 +1,29 @@
+/* "O Infiltrado" — identidade: espionagem, violeta, dossiê confidencial. */
+.theme-if { --accent: #8b6cff; }
+.theme-if .eyebrow { color: #b6a3ff; }
+.theme-if .card { border-color: rgba(139, 108, 255, .4); background: linear-gradient(180deg, #241a52, #1a1340); }
+.if-secret { text-align: center; margin: 0 0 14px; }
+.if-dossier {
+    position: relative; max-width: 520px; margin: 10px auto 0; padding: 40px 28px 30px; text-align: center;
+    border-radius: 20px; background: repeating-linear-gradient(0deg, #2a1f5e 0 2px, #251b54 2px 4px);
+    border: 2px solid #8b6cff; box-shadow: 0 20px 50px rgba(5, 2, 20, .55); animation: if-open .6s cubic-bezier(.2, 1.3, .4, 1) both;
+}
+.if-dossier.is-infiltrator { border-color: #ff5d73; background: repeating-linear-gradient(0deg, #3d1430 0 2px, #35112a 2px 4px); }
+.if-dossier__stamp {
+    position: absolute; top: 12px; right: 14px; margin: 0; padding: 2px 10px; border: 2px solid #ff5d73; border-radius: 6px;
+    color: #ff5d73; font-weight: 900; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; transform: rotate(8deg);
+}
+.if-dossier__label { margin: 0; color: var(--muted); text-transform: uppercase; letter-spacing: .14em; font-size: 13px; font-weight: 700; }
+.if-dossier__word { margin: 10px 0; font-family: var(--font-display); font-size: clamp(36px, 9vw, 64px); letter-spacing: -.02em; color: #fff; overflow-wrap: anywhere; }
+.if-dossier.is-infiltrator .if-dossier__word { color: #ff8fa0; }
+.if-dossier__note { margin: 0; color: #d9d0ff; }
+@keyframes if-open { from { opacity: 0; transform: rotateX(70deg) translateY(20px); } }
+.if-hints { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+.if-hints li { display: grid; gap: 2px; padding: 10px 12px; border-radius: 12px; background: rgba(139, 108, 255, .14); }
+.if-hints li span { font-size: 18px; overflow-wrap: anywhere; }
+.if-outcome { text-align: center; padding: 22px; margin-bottom: 16px; border-radius: 22px; background: rgba(255, 93, 115, .18); border: 2px solid #ff5d73; animation: pop .4s ease both; }
+.if-outcome.is-group { background: rgba(46, 230, 197, .14); border-color: #2ee6c5; }
+.if-outcome__title { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 6vw, 40px); }
+.if-outcome__reason { margin: 6px 0 0; color: var(--muted); }
+.if-reveal-line { margin: 0 0 6px; font-size: 18px; }
+.if-reveal-line strong { color: #c9bbff; }

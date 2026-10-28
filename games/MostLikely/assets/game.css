@@ -1,0 +1,13 @@
+/* "Quem é Mais Provável?" — identidade: menta, balões redondos e coroa. */
+.theme-ml { --accent: #2ee6c5; }
+.theme-ml .eyebrow { color: #2ee6c5; }
+.theme-ml .card { border-color: rgba(46, 230, 197, .35); }
+.theme-ml .big-prompt { color: #eafff9; }
+.theme-ml .choice { border-radius: 999px; align-items: center; text-align: center; }
+.theme-ml .choice.is-selected { background: rgba(46, 230, 197, .2); }
+.ml-winner { text-align: center; margin: 10px 0 4px; }
+.ml-crown { margin: 0; font-size: 44px; line-height: 1; animation: ml-bounce 1s ease both; }
+.ml-names { margin: 6px 0 2px; font-family: var(--font-display); font-size: clamp(26px, 6vw, 40px); color: #2ee6c5; overflow-wrap: anywhere; }
+.ml-none { font-size: 20px; color: var(--muted); }
+.ml-reveal-q { font-size: clamp(20px, 4vw, 28px); opacity: .85; }
+@keyframes ml-bounce { 0% { transform: scale(.3) rotate(-20deg); opacity: 0; } 60% { transform: scale(1.2) rotate(8deg); } 100% { transform: none; opacity: 1; } }

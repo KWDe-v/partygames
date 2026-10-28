@@ -1,0 +1,20 @@
+/* "A Resposta Mais Absurdamente Errada" — identidade: laranja, cartões tortos e caóticos. */
+.theme-ab { --accent: #ff8a3d; }
+.theme-ab .eyebrow { color: #ffb37a; }
+.theme-ab .card { border-color: rgba(255, 138, 61, .45); }
+.ab-question {
+    margin: 0 0 16px; padding: 22px 24px; border-radius: 22px; background: #ff8a3d; color: #2a1206;
+    font-family: var(--font-display); font-size: clamp(22px, 4.6vw, 34px); line-height: 1.12; letter-spacing: -.02em;
+    transform: rotate(-1.2deg); box-shadow: 0 10px 0 #c95f1c, var(--shadow); overflow-wrap: anywhere;
+}
+.ab-instruction { text-align: center; color: var(--muted); }
+.ab-answers .choice { border-radius: 18px; padding: 16px 18px; }
+.ab-answers li:nth-child(odd) .choice { transform: rotate(-.6deg); }
+.ab-answers li:nth-child(even) .choice { transform: rotate(.6deg); }
+.ab-answers .choice.is-selected { background: rgba(255, 138, 61, .25); }
+.ab-results { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ab-result { position: relative; padding: 16px 18px; border-radius: 18px; background: rgba(255,255,255,.06); border: 2px solid var(--line); animation: pop .4s ease both; }
+.ab-result.is-winner { background: #fff1e6; color: #2a1206; border-color: #ff8a3d; transform: rotate(-.8deg) scale(1.02); }
+.ab-result__text { margin: 0 0 4px; font-size: clamp(18px, 3.6vw, 22px); font-weight: 800; overflow-wrap: anywhere; }
+.ab-result__meta { margin: 0; font-size: 14px; opacity: .75; }
+.ab-trophy { position: absolute; top: -14px; right: 12px; font-size: 30px; animation: pop .5s .3s ease both; }
