@@ -1,0 +1,37 @@
+/* "Quem Sou Eu?" — identidade: azul-claro, cartas na testa. */
+.theme-wa { --accent: #4fc3f7; }
+.theme-wa .eyebrow { color: #8fdcff; }
+.theme-wa .card { border-color: rgba(79, 195, 247, .45); }
+.theme-wa .timer__bar { stroke: #4fc3f7; }
+.wa-me { text-align: center; margin: 0 0 12px; padding: 16px; border-radius: 18px; background: #4fc3f7; color: #06263a; box-shadow: 0 8px 0 #2a8fbd, var(--shadow); }
+.wa-me p { margin: 0; }
+.wa-me__label { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 800; opacity: .7; }
+.wa-me__name { font-family: var(--font-display); font-size: clamp(26px, 6vw, 40px); line-height: 1.1; overflow-wrap: anywhere; }
+.wa-me__hint { font-size: 14px; font-weight: 700; opacity: .8; }
+.wa-me.is-solved { background: #3dd68c; box-shadow: 0 8px 0 #24a066, var(--shadow); }
+.wa-turn { text-align: center; font-family: var(--font-display); font-size: 20px; margin: 8px 0 12px; }
+#wa-question, #wa-guess { margin-bottom: 10px; }
+.wa-guess { margin-top: 16px; padding-top: 14px; border-top: 1px dashed rgba(255,255,255,.15); }
+.wa-answers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.wa-answers .btn { font-weight: 800; }
+.wa-answers .btn.is-selected { outline: 3px solid #fff; }
+.wa-yes { background: #3dd68c; color: #06261a; }
+.wa-no { background: #ff6b6b; color: #2a0606; }
+.wa-idk { background: rgba(255,255,255,.14); }
+.wa-h { margin: 18px 0 8px; }
+.wa-people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.wa-person { padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,.06); border: 2px solid transparent; animation: pop .25s ease both; }
+.wa-person.is-current { border-color: #4fc3f7; }
+.wa-person.is-solved { background: rgba(61, 214, 140, .16); }
+.wa-person__nick { display: block; font-size: 13px; color: var(--muted); font-weight: 700; }
+.wa-person__id { display: block; font-family: var(--font-display); font-size: 18px; overflow-wrap: anywhere; }
+.wa-person.is-me .wa-person__id { opacity: .5; }
+.wa-log { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 320px; overflow: auto; }
+.wa-log li { padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.05); overflow-wrap: anywhere; }
+.wa-log li strong { color: var(--muted); margin-right: 6px; }
+.wa-log li.is-right { background: rgba(61, 214, 140, .18); }
+.wa-log li.is-wrong { background: rgba(255, 107, 107, .14); }
+.wa-log__counts { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.wa-reveal-title { text-align: center; font-family: var(--font-display); margin: 0 0 14px; }
+.wa-people--reveal .wa-person__id { font-size: 22px; }
+@media (max-width: 420px) { .wa-answers { grid-template-columns: 1fr; } }

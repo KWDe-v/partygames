@@ -1,0 +1,30 @@
+/* "Missão Secreta" — identidade: verde agente, envelope confidencial e chat. */
+.theme-sm { --accent: #3dd68c; }
+.theme-sm .eyebrow { color: #7ff0b8; }
+.theme-sm .card { border-color: rgba(61, 214, 140, .4); }
+.sm-mission { margin: 0 0 12px; padding: 22px; border-radius: 18px; text-align: center; background: repeating-linear-gradient(45deg, #123826 0 12px, #10301f 12px 24px); border: 2px dashed #3dd68c; animation: pop .4s ease both; }
+.sm-mission p { margin: 0; }
+.sm-mission__label { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 800; color: #7ff0b8; }
+.sm-mission__text { margin: 8px 0 !important; font-family: var(--font-display); font-size: clamp(20px, 4.4vw, 28px); line-height: 1.2; overflow-wrap: anywhere; }
+.sm-mission__hint { font-size: 13px; color: var(--muted); }
+.sm-mission.is-compact { padding: 10px 14px; text-align: left; }
+.sm-mission.is-compact .sm-mission__text { font-size: 17px; margin: 2px 0 0 !important; }
+.sm-mission.is-compact .sm-mission__hint { display: none; }
+.sm-topic { margin: 0 0 12px; color: var(--muted); }
+.sm-topic strong { color: var(--text); }
+.sm-chat__log { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; max-height: 46vh; min-height: 120px; overflow: auto; }
+.sm-chat__log li { max-width: 85%; padding: 8px 12px; border-radius: 14px 14px 14px 4px; background: rgba(255,255,255,.07); display: grid; gap: 2px; overflow-wrap: anywhere; }
+.sm-chat__log li strong { font-size: 12px; color: #7ff0b8; }
+.sm-chat__log li.is-me { justify-self: end; border-radius: 14px 14px 4px 14px; background: rgba(61, 214, 140, .2); }
+.sm-chat__log li.muted { max-width: none; background: none; }
+.sm-chat__form { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.sm-guesses, .sm-evals { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.sm-guesses li { display: grid; gap: 6px; }
+.sm-evals li { padding: 12px; border-radius: 12px; background: rgba(255,255,255,.05); }
+.sm-evals li p { margin: 4px 0 8px; }
+.sm-evals__btns { display: flex; gap: 8px; }
+.sm-results { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.sm-result { padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,.05); border-left: 4px solid #e84a5f; animation: pop .3s ease both; }
+.sm-result.is-done { border-left-color: #3dd68c; background: rgba(61, 214, 140, .1); }
+.sm-result p { margin: 4px 0; font-size: 17px; }
+.sm-result span { font-size: 13px; color: var(--muted); }

@@ -16,6 +16,11 @@ sem Composer, frameworks, WebSockets ou serviços externos. Funciona em hospedag
 | **A Resposta Mais Absurdamente Errada** | 3–20 | Respostas anônimas à mesma pergunta; vence a mais votada. |
 | **Quem Cometeu o Crime?** | 2–10 | Investigação com papéis, pistas, interrogatórios e acusação final (10 casos). |
 | **O que você faria se...** | 3–20 | Perguntas e respostas de pessoas diferentes misturadas no final (sem pontuação). |
+| **O Tribunal** | 3–12 | Réu, promotor, defesa, testemunhas e juiz; o júri decide o veredito de um caso absurdo. |
+| **A Bomba Relógio** | 2–12 | Cada um responde algo da categoria antes do pavio acabar; quem trava explode. |
+| **Missão Secreta** | 3–12 | Cada um recebe uma missão secreta para cumprir no chat sem ser percebido. |
+| **Manchete Absurda** | 3–20 | Todos escrevem a manchete de jornal mais absurda para o tema; a mais votada vira capa. |
+| **Quem Sou Eu?** | 2–10 | Todos veem a sua identidade, menos você; descubra com perguntas de sim ou não. |
 
 ## Publicação (3 passos, sem instalador)
 
@@ -84,6 +89,35 @@ Teatro Real, Vinícola Serra Alta, Taça do Centenário, Hotel da Nevasca, Circo
 **O que você faria se...** — cada um completa a pergunta, responde à de outra pessoa (sorteio sem
 auto-atribuição) e os pares são misturados na apresentação final.
 
+**O Tribunal** — briefing → acusação → defesa → testemunhos → alegações finais → votação → veredito.
+Papéis por número de jogadores: réu e promotor; defesa (4+), testemunha (5+), juiz (6+), 2ª testemunha
+(8+); os demais são jurados. Sem defesa, o réu se defende sozinho. Etapas sem quem fale são puladas.
+Só quem tem a palavra fala (10–400 caracteres, uma fala por etapa). Votam jurados, testemunhas e juiz
+(voto único). Maioria decide; empate ⇒ voto do juiz, ou inocente. A verdade do caso fica no servidor até o
+veredito. *Pontos:* lado vencedor (promotor ou defesa+réu) +3; jurado que acertou a verdade +1. 8 casos.
+
+**A Bomba Relógio** — uma categoria por rodada; a vez segue a ordem sorteada. Só quem está com a bomba
+responde (1–60 caracteres), e o prazo de cada vez é do servidor. Sem repetição (ignora acentos e
+maiúsculas, configurável). Prazo vencido ⇒ explode: −2 e fora da rodada; quem sai da sala só deixa a
+rodada. *Pontos:* +1 por resposta; sobrevivente +3. 16 categorias + personalizadas.
+
+**Missão Secreta** — cada jogador recebe só a própria missão (palavra, item de lista, fazer alguém
+perguntar ou dizer algo, número etc.) e conversa no chat do jogo. Missões objetivas são verificadas
+automaticamente pelo servidor (só contam mensagens de outros/do alvo); as subjetivas vão para avaliação
+da mesa. Depois, palpites sobre a missão dos outros (opções com códigos aleatórios). *Pontos:* missão
+cumprida +3; palpite certo +1; missão cumprida sem ser descoberta +1.
+
+**Manchete Absurda** — tema da seção do jornal → cada um escreve uma manchete (8–140 caracteres, envio
+único) → votação anônima por código, nunca na própria → capa. Empate: capa dividida. Menos de 2
+manchetes ⇒ rodada anulada. *Pontos:* capa +3; +1 por voto recebido. Revelação automática ou manual.
+
+**Quem Sou Eu?** — cada jogador recebe uma identidade (distintas, salvo se repetidas forem permitidas).
+O servidor nunca envia a própria identidade ao jogador antes de ele acertar ou da revelação. Na vez, faça
+uma pergunta (3–150 caracteres) que os outros respondem com sim, não ou não sei (uma resposta cada), ou
+dê um palpite (encerra a vez). Palpites limitados (3 por padrão), sem repetir; acentos e maiúsculas não
+importam e apelidos são aceitos. Quem acertou é pulado nos turnos. A rodada acaba quando todos acertam
+ou o tempo total termina. *Pontos:* acerto +5; acerto com até 3 perguntas +2.
+
 ## Arquitetura
 
 ```
@@ -105,7 +139,9 @@ genéricas de rodada `game_rounds` (dados públicos × secretos), `game_round_pl
 individuais), `game_entries` (respostas/dicas/afirmações; únicas por jogador e rodada) e `game_votes`
 (únicos por eleitor e cédula). Jogos com necessidades próprias têm tabelas prefixadas:
 `crime_unlocks`, `crime_actions`, `crime_accusations` e `oqvf_*`. Os casos do Crime ficam em arquivos
-(`games/CrimeMystery/cases/*.php`), validados ao carregar.
+(`games/CrimeMystery/cases/*.php`), validados ao carregar. Os 5 jogos da versão 4 (Tribunal, Bomba
+Relógio, Missão Secreta, Manchete Absurda, Quem Sou Eu?) não criam tabelas: usam as genéricas com
+tipos de envio numerados por turno/mensagem (`t12`, `m3`, `q5`, `g2`), mantendo a proteção `UNIQUE`.
 
 **Concorrência.** Toda mudança de estado ocorre em transação com a sala bloqueada (`SELECT … FOR UPDATE`)
 e é reavaliada após o bloqueio; restrições `UNIQUE` impedem envios e votos duplicados mesmo com
@@ -162,7 +198,7 @@ start_game · leave_room · end_game · game&op=<ação do jogo>`. POST envia JS
 
 Ações por jogo: `vote` (Mais Provável) · `hint`, `vote` (Infiltrado) · `statement`, `vote` (Mentira ou
 Verdade) · `answer`, `vote` (Resposta Absurda) · `ready`, `ask`, `search`, `accuse` (Crime) ·
-`submit_question`, `submit_answer`, `advance` (O que você faria se) · `skip` (anfitrião encerra a fase).
+`submit_question`, `submit_answer`, `advance` (O que você faria se) · `speak`, `vote` (Tribunal) · `answer` (Bomba Relógio) · `say`, `guess`, `evaluate` (Missão Secreta) · `headline`, `vote` (Manchete Absurda) · `ask`, `answer`, `guess` (Quem Sou Eu?) · `skip` (anfitrião encerra a fase).
 
 ## Testes realizados
 
@@ -171,5 +207,5 @@ acusações duplicados (inclusive 5 requisições simultâneas — só 1 aceita)
 resposta; anonimato e ausência de segredos no JSON antes da revelação (papéis, palavra, autores, votos,
 solução, pistas privadas); prazos recusados pelo servidor; reconexão em outra sessão com placar e
 histórico preservados; transferência do anfitrião; pontuação e empates em cada jogo; rodadas anuladas e
-sem votos; validação dos casos; inicialização repetida sem alterar dados e recriação de tabela ausente.
+sem votos; validação dos casos; nos 5 jogos novos: papéis e falas por etapa, veredito com desempate do juiz, turnos e explosão por prazo, respostas repetidas, verificação automática de missões e privacidade do chat de missões, manchetes anônimas e capa dividida, identidade própria ausente do JSON, limite e repetição de palpites; inicialização repetida sem alterar dados e recriação de tabela ausente.
 Também foi jogada uma partida de cada jogo no navegador, em largura de celular.

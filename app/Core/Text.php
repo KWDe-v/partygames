@@ -34,6 +34,20 @@ final class Text
         return preg_match('/^.{0,' . $max . '}/us', $s, $m) ? $m[0] : substr($s, 0, $max);
     }
 
+    /** Forma comparável: minúsculas, sem acentos e só letras/números (ex.: "Pão-de-Queijo" → "paodequeijo"). */
+    public static function fold(string $s): string
+    {
+        $s = strtr($s, [
+            'Á' => 'a', 'À' => 'a', 'Â' => 'a', 'Ã' => 'a', 'Ä' => 'a', 'á' => 'a', 'à' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a',
+            'É' => 'e', 'Ê' => 'e', 'È' => 'e', 'Ë' => 'e', 'é' => 'e', 'ê' => 'e', 'è' => 'e', 'ë' => 'e',
+            'Í' => 'i', 'Ì' => 'i', 'Î' => 'i', 'Ï' => 'i', 'í' => 'i', 'ì' => 'i', 'î' => 'i', 'ï' => 'i',
+            'Ó' => 'o', 'Ò' => 'o', 'Ô' => 'o', 'Õ' => 'o', 'Ö' => 'o', 'ó' => 'o', 'ò' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o',
+            'Ú' => 'u', 'Ù' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ú' => 'u', 'ù' => 'u', 'û' => 'u', 'ü' => 'u',
+            'Ç' => 'c', 'ç' => 'c', 'Ñ' => 'n', 'ñ' => 'n',
+        ]);
+        return (string) preg_replace('/[^a-z0-9]/', '', strtolower($s));
+    }
+
     public static function length(string $s): int
     {
         return function_exists('mb_strlen') ? mb_strlen($s, 'UTF-8') : (int) preg_match_all('/./us', $s);

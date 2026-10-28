@@ -1,0 +1,28 @@
+/* "Manchete Absurda" — identidade: jornal impresso, serifa e papel jornal. */
+.theme-hl { --accent: #e8e2d0; --news: #f4efe2; --ink: #1a1a1a; }
+.theme-hl .eyebrow { color: #e8e2d0; }
+.theme-hl .card { border-color: rgba(232, 226, 208, .35); }
+.hl-paper, .hl-front { margin: 0 0 16px; padding: 18px 22px; background: var(--news); color: var(--ink); border-radius: 4px; box-shadow: 0 2px 0 #cfc7b0, var(--shadow); font-family: Georgia, "Times New Roman", serif; }
+.hl-paper p, .hl-front p { margin: 0; }
+.hl-paper__mast { text-align: center; font-family: "Old English Text MT", Georgia, serif; font-size: 26px; font-weight: 700; border-bottom: 3px double var(--ink); padding-bottom: 6px; margin-bottom: 10px !important; }
+.hl-paper__section { text-transform: uppercase; letter-spacing: .2em; font-size: 12px; font-family: var(--font); font-weight: 800; color: #8a2a36; }
+.hl-paper__theme { font-size: clamp(22px, 4.6vw, 32px); font-weight: 700; line-height: 1.15; margin: 4px 0 !important; }
+.hl-paper__example { font-style: italic; color: #5a5446; }
+.hl-vote-theme { text-align: center; color: var(--muted); }
+.hl-vote-theme strong { color: var(--text); }
+.hl-headlines .choice { background: var(--news); color: var(--ink); border-color: #cfc7b0; border-radius: 4px; }
+.hl-headlines .choice__label { font-family: Georgia, "Times New Roman", serif; font-size: 19px; font-weight: 700; }
+.hl-headlines .choice__sub { color: #5a5446; }
+.hl-headlines .choice.is-selected { border-color: #8a2a36; box-shadow: 0 0 0 4px rgba(138, 42, 54, .25); }
+.hl-front { text-align: center; animation: hl-print .6s cubic-bezier(.2, 1.3, .4, 1) both; }
+@keyframes hl-print { from { transform: rotate(-12deg) scale(.6); opacity: 0; } }
+.hl-front__label { text-transform: uppercase; letter-spacing: .2em; font-size: 12px; font-family: var(--font); font-weight: 800; color: #8a2a36; }
+.hl-front__headline { font-size: clamp(24px, 5.4vw, 38px); font-weight: 700; line-height: 1.1; margin: 10px 0 4px !important; overflow-wrap: anywhere; }
+.hl-front__byline { font-style: italic; color: #5a5446; }
+.hl-ranking { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.hl-ranking li { display: flex; gap: 12px; align-items: center; padding: 10px 14px; border-radius: 10px; background: rgba(255,255,255,.05); }
+.hl-ranking li.is-front { background: rgba(232, 226, 208, .14); }
+.hl-ranking__pos { font-family: var(--font-display); font-size: 20px; min-width: 34px; }
+.hl-ranking li div { display: grid; gap: 2px; }
+.hl-ranking li strong { font-family: Georgia, serif; overflow-wrap: anywhere; }
+.hl-ranking li span { font-size: 13px; color: var(--muted); }
