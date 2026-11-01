@@ -5,13 +5,27 @@
     const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
     let lastTurn = null;
     let revealed = null;
+    let lastRejKey = null;
 
-    function history(list, items, R) {
+    function history(list, items, R, interactive) {
         list.textContent = '';
-        items.forEach((it) => list.appendChild(R.ui.h('li', { class: it.boom ? 'tb-boom' : '' }, [
-            R.ui.h('strong', { text: it.nickname }),
-            R.ui.h('span', { text: it.boom ? '💥 explodiu!' : it.text }),
-        ])));
+        items.forEach((it) => {
+            const label = it.boom ? (it.rejected ? '🚫 recusado — explodiu!' : '💥 explodiu!') : it.text;
+            const children = [R.ui.h('strong', { text: it.nickname }), R.ui.h('span', { text: label })];
+            if (!it.boom && interactive && it.reject_need > 0) {
+                const wrap = R.ui.h('span', { class: 'tb-reject' });
+                if (it.can_reject) {
+                    wrap.appendChild(R.ui.h('button', { type: 'button', class: 'tb-reject__btn', 'data-turn': String(it.turn), title: 'Recusar esta resposta', text: 'Recusar' }));
+                } else if (it.i_rejected) {
+                    wrap.appendChild(R.ui.h('span', { class: 'tb-reject__mine', text: 'você recusou' }));
+                }
+                if (it.reject_count > 0) {
+                    wrap.appendChild(R.ui.h('span', { class: 'tb-reject__count', text: '👎 ' + it.reject_count + '/' + it.reject_need }));
+                }
+                children.push(wrap);
+            }
+            list.appendChild(R.ui.h('li', { class: (it.boom ? 'tb-boom' : '') + (it.rejected ? ' tb-rejected' : '') }, children));
+        });
         if (!items.length) list.appendChild(R.ui.h('li', { class: 'muted', text: 'Ninguém respondeu ainda.' }));
     }
 
@@ -26,11 +40,13 @@
         $('#tb-holder').textContent = g.my_turn ? 'A bomba está com VOCÊ!' : (holder ? 'A bomba está com ' + holder.nickname : '');
         const bomb = $('#tb-bomb');
         bomb.classList.toggle('is-mine', g.my_turn);
+        let turnChanged = false;
         if (lastTurn !== g.round.id + ':' + g.turn) {
             const last = g.history[0];
             if (lastTurn !== null && last) R.sfx.play(last.boom ? 'boom' : 'pass');
             if (g.my_turn) R.sfx.play('alarm', last && last.boom ? 0.9 : 0.15);
             lastTurn = g.round.id + ':' + g.turn;
+            turnChanged = true;
             R.ui.restartAnimation(bomb);
             const input = $('#tb-text');
             input.value = '';
@@ -38,13 +54,19 @@
             R.ui.formError($('#tb-form'), '');
             if (g.my_turn) setTimeout(() => input.focus(), 30);
         }
+        // Recusa que eliminou alguém que não estava com a bomba: toca a explosão aqui.
+        const rejKey = g.round.id + ':' + g.history.length;
+        if (!turnChanged && lastRejKey !== null && rejKey !== lastRejKey && g.history[0] && g.history[0].boom && g.history[0].rejected) {
+            R.sfx.play('boom');
+        }
+        lastRejKey = rejKey;
         $('#tb-answer').hidden = !g.my_turn;
         const ring = $('#tb-ring');
         ring.textContent = '';
         g.order.forEach((p) => ring.appendChild(R.ui.h('li', { class: 'tb-player' + (p.current ? ' is-current' : '') + (p.alive ? '' : ' is-out') }, [
             R.ui.h('span', { text: (p.current ? '💣 ' : '') + p.nickname }),
         ])));
-        history($('#tb-history'), g.history, R);
+        history($('#tb-history'), g.history, R, true);
         return 'tb-turn';
     }
 
@@ -56,7 +78,7 @@
         R.ui.setTimer(sec, g.round.started_at, g.round.ends_at);
         $('#tb-survivor').textContent = r.survivors.length ? r.survivors.join(', ') : 'Ninguém!';
         $('#tb-summary').textContent = r.answers + ' respostas antes do fim.';
-        history($('#tb-final-history'), g.history, R);
+        history($('#tb-final-history'), g.history, R, false);
         R.ui.hostSkip($('#tb-next'), s, 'reveal');
         if (revealed !== g.round.id) {
             revealed = g.round.id;
@@ -92,6 +114,19 @@
                 } finally {
                     R.ui.setLoading(btn, false);
                 }
+            });
+            // Recusa coletiva: clicar em "Recusar" numa resposta do histórico.
+            $('#tb-history').addEventListener('click', async (ev) => {
+                const btn = ev.target.closest('.tb-reject__btn');
+                if (!btn) return;
+                btn.disabled = true;
+                try {
+                    const res = await R.action('reject', { turn: Number(btn.dataset.turn) });
+                    if (res && res.eliminated) R.sfx.play('boom');
+                } catch (e) {
+                    R.ui.toast(e.message, 'error');
+                }
+                R.pollNow();
             });
         },
         render(s, prev, R) {

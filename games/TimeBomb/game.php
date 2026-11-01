@@ -37,10 +37,11 @@ return [
             'Respostas repetidas na mesma rodada são recusadas (dá para desligar ao criar a sala); você pode tentar outra enquanto houver tempo.',
             'Acentos e maiúsculas não importam: "Pão" e "pao" contam como a mesma resposta.',
             'Se a resposta é mesmo da categoria, quem decide é a galera — vale a honestidade!',
+            'Achou a resposta de alguém furada? Toque em "Recusar". Se TODOS os outros jogadores vivos recusarem a mesma resposta, quem a escreveu explode na hora e perde o ponto dela.',
         ],
         'scoring' => [
             'Cada resposta aceita: +1 ponto.',
-            'Bomba explodiu na sua mão: −2 pontos.',
+            'Bomba explodiu na sua mão (ou sua resposta foi recusada por todos): −2 pontos.',
             'Último sobrevivente da rodada: +3 pontos.',
         ],
         'tips' => ['Pense na próxima resposta enquanto os outros jogam!'],

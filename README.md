@@ -103,7 +103,9 @@ veredito. *Pontos:* lado vencedor (promotor ou defesa+réu) +3; jurado que acert
 **A Bomba Relógio** — uma categoria por rodada; a vez segue a ordem sorteada. Só quem está com a bomba
 responde (1–60 caracteres), e o prazo de cada vez é do servidor. Sem repetição (ignora acentos e
 maiúsculas, configurável). Prazo vencido ⇒ explode: −2 e fora da rodada; quem sai da sala só deixa a
-rodada. *Pontos:* +1 por resposta; sobrevivente +3. 16 categorias + personalizadas.
+rodada. **Recusa coletiva:** cada resposta tem um botão "Recusar"; quando todos os outros jogadores
+vivos recusam a mesma resposta, quem a escreveu explode na hora e perde o ponto dela (voto único por
+jogador). *Pontos:* +1 por resposta; sobrevivente +3. 16 categorias + personalizadas.
 
 **Missão Secreta** — cada jogador recebe só a própria missão (palavra, item de lista, fazer alguém
 perguntar ou dizer algo, número etc.) e conversa no chat do jogo. Missões objetivas são verificadas
@@ -202,7 +204,7 @@ start_game · leave_room · end_game · game&op=<ação do jogo>`. POST envia JS
 
 Ações por jogo: `vote` (Mais Provável) · `hint`, `vote` (Infiltrado) · `statement`, `vote` (Mentira ou
 Verdade) · `answer`, `vote` (Resposta Absurda) · `ready`, `ask`, `search`, `accuse` (Crime) ·
-`submit_question`, `submit_answer`, `advance` (O que você faria se) · `speak`, `vote` (Tribunal) · `answer` (Bomba Relógio) · `say`, `guess`, `evaluate` (Missão Secreta) · `headline`, `vote` (Manchete Absurda) · `ask`, `answer`, `guess` (Quem Sou Eu?) · `skip` (anfitrião encerra a fase).
+`submit_question`, `submit_answer`, `advance` (O que você faria se) · `speak`, `vote` (Tribunal) · `answer`, `reject` (Bomba Relógio) · `say`, `guess`, `evaluate` (Missão Secreta) · `headline`, `vote` (Manchete Absurda) · `ask`, `answer`, `guess` (Quem Sou Eu?) · `skip` (anfitrião encerra a fase).
 
 ## Testes realizados
 
