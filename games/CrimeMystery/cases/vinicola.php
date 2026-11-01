@@ -7,7 +7,7 @@ defined('APP_ROOT') || exit;
 return [
     'id' => 'vinicola',
     'title' => 'Envenenamento na Vinícola Serra Alta',
-    'difficulty' => 'Médio',
+    'difficulty' => 'Difícil',
     'intro' => 'A Vinícola Serra Alta lançava sua safra especial com um jantar para convidados. No brinde das 20h, a fundadora, Dona Iolanda Serra, bebeu um gole, levou a mão ao peito e caiu. O vinho dos outros convidados era o mesmo — e ninguém mais passou mal.',
     'crime' => 'Iolanda Serra, 68 anos, morreu envenenada por um pesticida usado no vinhedo. Só a taça dela tinha o veneno.',
     'victim' => 'Iolanda Serra, fundadora da vinícola',
@@ -58,7 +58,7 @@ return [
         ],
         'davi' => [
             ['id' => 'd1', 'question' => 'Quem preparou a taça dourada?', 'answer' => 'O Mateus me entregou já pronta às 19h55. Eu só servi o vinho, como em todas as outras.', 'unlocks' => 'v8'],
-            ['id' => 'd2', 'question' => 'Alguém mexeu na bandeja?', 'answer' => 'Não. Ela ficou o tempo todo comigo, do porão até o salão.'],
+            ['id' => 'd2', 'question' => 'Alguém mexeu na bandeja?', 'answer' => 'A bandeja ficou comigo. Mas a taça dourada já veio pronta do porão, das mãos do Mateus — essa eu não preparei, só pousei na mesa da Dona Iolanda.'],
             ['id' => 'd3', 'question' => 'Você foi advertido por Iolanda?', 'answer' => 'Por atraso, sim. Mas ela me deu outra chance. Eu gostava dela.'],
         ],
     ],
@@ -66,7 +66,7 @@ return [
         'culprit' => 'mateus',
         'motive' => 'fraude',
         'key_clues' => ['v2', 'v3', 'v6', 'v7', 'v8'],
-        'explanation' => 'Mateus Costa engarrafava vinho comum com rótulo de "Reserva", e Iolanda tinha o laudo que provava a fraude, com reunião marcada com a polícia. Aproveitando a tradição de preparar a taça dourada no porão, ele colocou o pesticida no fundo dela às 19h40 e a entregou pronta a Davi, que só serviu o vinho. O frasco aberto estava atrás do barril dele. Lúcia estava ao vivo no rádio e Pierre chegou às 19h58, depois de a taça já estar preparada.',
+        'explanation' => 'Mateus Costa engarrafava vinho comum com rótulo de "Reserva", e Iolanda tinha o laudo que provava a fraude, com reunião marcada com a polícia. Aproveitando a tradição de preparar a taça dourada no porão, ele colocou o pesticida seco no fundo dela às 19h40 e a entregou pronta a Davi. O sommelier é a isca — serviu a taça e tinha sido advertido —, mas o veneno foi posto ANTES do vinho, e ele apenas serviu; o frasco aberto estava atrás do barril pessoal de Mateus. Lúcia estava ao vivo no rádio e Pierre chegou às 19h58, depois de a taça já estar preparada.',
     ],
-    'scoring' => ['culprit' => 5, 'motive' => 1, 'clue' => 1],
+    'scoring' => ['culprit' => 5, 'motive' => 2, 'clue' => 1],
 ];

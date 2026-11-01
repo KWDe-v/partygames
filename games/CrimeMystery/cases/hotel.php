@@ -35,7 +35,7 @@ return [
         'h7' => ['title' => 'Registro de chamadas', 'text' => 'O telefone do quarto 7 ligou para o quarto 3 às 22h50. A ligação durou 20 segundos.', 'unlock' => ['type' => 'search'], 'important' => true],
         'h8' => ['title' => 'A capa do livro', 'text' => 'Regina conta que, naquela tarde, Augusto se recusou a colocar o nome de Camila na capa e ameaçou demiti-la se ela insistisse.', 'unlock' => ['type' => 'interrogation'], 'important' => true],
         'h9' => ['title' => 'Noite no bar', 'text' => 'O barman confirma que Norberto ficou no bar das 22h à meia-noite, sem sair.', 'unlock' => ['type' => 'time', 'at' => 0.6]],
-        'h10' => ['title' => 'Videochamada', 'text' => 'O notebook de Regina registra uma videochamada com a gráfica das 22h40 às 23h20.', 'unlock' => ['type' => 'search']],
+        'h10' => ['title' => 'A chamada da gráfica', 'text' => 'O notebook de Regina registra uma chamada com a gráfica das 22h40 às 23h20 — mas era só áudio, com a câmera fechada: não dá para saber se ela ficou o tempo todo diante do aparelho.', 'unlock' => ['type' => 'search']],
     ],
     'locations' => [
         'quarto3' => ['name' => 'Quarto 3', 'clue' => 'h6'],
@@ -44,7 +44,7 @@ return [
     ],
     'interrogations' => [
         'regina' => [
-            ['id' => 'r1', 'question' => 'Onde você estava às 23h?', 'answer' => 'Em videochamada com a gráfica, no meu quarto. Estamos atrasados com a impressão.'],
+            ['id' => 'r1', 'question' => 'Onde você estava às 23h?', 'answer' => 'Em chamada com a gráfica, no meu quarto. Era áudio, câmera fechada... estamos atrasados com a impressão. Mas eu estava lá o tempo todo.'],
             ['id' => 'r2', 'question' => 'Houve alguma discussão ontem?', 'answer' => 'Camila pediu que o nome dela fosse na capa. Augusto se recusou e ameaçou demiti-la. Ela saiu chorando.', 'unlocks' => 'h8'],
             ['id' => 'r3', 'question' => 'Augusto ia trocar de editora?', 'answer' => 'Era uma ameaça antiga. Ele assinou a renovação mês passado.'],
         ],
@@ -66,7 +66,7 @@ return [
         'culprit' => 'camila',
         'motive' => 'credito',
         'key_clues' => ['h3', 'h6', 'h7', 'h8'],
-        'explanation' => 'Camila Rios escrevia os livros que Augusto publicava como seus. Naquela tarde ele se recusou a dar o crédito a ela e ameaçou demiti-la. Às 22h50 ele ligou para o quarto 3 chamando-a; Camila foi ao quarto 7 (por isso a porta não foi forçada), discutiram e ela o atingiu com o peso de papel — que ficou manchado com a tinta verde da caneta dela. Depois levou o manuscrito, escondido sob o próprio colchão. Regina estava em videochamada, Norberto no bar e Tiago na recepção, filmado.',
+        'explanation' => 'Camila Rios escrevia os livros que Augusto publicava como seus. Naquela tarde ele se recusou a dar o crédito a ela e ameaçou demiti-la. Às 22h50 ele ligou para o quarto 3 chamando-a; Camila foi ao quarto 7 (por isso a porta não foi forçada), discutiram e ela o atingiu com o peso de papel — que ficou manchado com a tinta verde da caneta dela. Depois levou o manuscrito, escondido sob o próprio colchão. Regina tinha motivo (a ameaça de troca de editora) e uma chamada de câmera fechada que não a inocenta de todo — mas foi a tinta verde da caneta de Camila no peso de papel, o manuscrito sob o colchão dela e a ligação das 22h50 que a chamou ao quarto 7 que fecham o caso. Norberto estava no bar e Tiago na recepção, filmado.',
     ],
-    'scoring' => ['culprit' => 5, 'motive' => 1, 'clue' => 1],
+    'scoring' => ['culprit' => 5, 'motive' => 2, 'clue' => 1],
 ];

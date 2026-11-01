@@ -7,7 +7,7 @@ defined('APP_ROOT') || exit;
 return [
     'id' => 'teatro',
     'title' => 'O Lustre do Teatro Real',
-    'difficulty' => 'Médio',
+    'difficulty' => 'Difícil',
     'intro' => 'Ensaio geral da grande estreia do Teatro Real. No segundo ato, o lustre de cristal despencou sobre o palco e passou a centímetros da protagonista, Clara Moura. Por sorte, ninguém se feriu — mas o cabo não se rompeu sozinho.',
     'crime' => 'O cabo de aço que sustentava o lustre foi serrado de propósito. Foi uma tentativa de ferir a atriz principal.',
     'victim' => 'Clara Moura, atriz principal',
@@ -35,7 +35,7 @@ return [
         'te7' => ['title' => 'Roteiro anotado', 'text' => 'O roteiro de Bianca tem todas as falas da protagonista sublinhadas e a frase "a estreia vai ser minha" escrita na capa.', 'unlock' => ['type' => 'search'], 'important' => true],
         'te8' => ['title' => 'Quem subiu a escada', 'text' => 'Juca viu alguém de figurino dourado subir a escada técnica às 20h15, no meio do intervalo.', 'unlock' => ['type' => 'interrogation'], 'important' => true],
         'te9' => ['title' => 'Gravação da plateia', 'text' => 'A câmera que grava os ensaios mostra Henrique na plateia, ao lado do produtor, durante todo o intervalo.', 'unlock' => ['type' => 'time', 'at' => 0.6]],
-        'te10' => ['title' => 'Registro de chegada', 'text' => 'A portaria registrou a chegada de Rogério às 20h40, depois do fim do intervalo.', 'unlock' => ['type' => 'search']],
+        'te10' => ['title' => 'Registro de chegada', 'text' => 'A portaria registrou a chegada de Rogério às 20h40 pela entrada dos artistas — mas a porta de serviço dos bastidores não tem controle, e um patrocinador conhece bem o caminho.', 'unlock' => ['type' => 'search']],
     ],
     'locations' => [
         'varanda' => ['name' => 'Varanda técnica', 'clue' => 'te6'],
@@ -66,7 +66,7 @@ return [
         'culprit' => 'bianca',
         'motive' => 'papel',
         'key_clues' => ['te2', 'te3', 'te6', 'te7', 'te8'],
-        'explanation' => 'Bianca Torres queria estrear no papel principal. No intervalo, ainda com o figurino dourado do coro, subiu pela escada técnica que fica atrás do próprio camarim e serrou o cabo até restar um fio, que cederia com a música do segundo ato. Juca viu alguém de dourado subir às 20h15; a serra estava embrulhada em uma luva do figurino e o roteiro dela mostrava a obsessão pelo papel. Henrique estava na plateia (gravado) e Rogério só chegou depois do intervalo.',
+        'explanation' => 'Bianca Torres queria estrear no papel principal. No intervalo, ainda com o figurino dourado do coro, subiu pela escada técnica que fica atrás do próprio camarim e serrou o cabo até restar um fio, que cederia com a música do segundo ato. Juca viu alguém de dourado subir às 20h15; a serra estava embrulhada em uma luva do figurino e o roteiro dela mostrava a obsessão pelo papel. Henrique estava na plateia, gravado. Rogério ameaçou o patrocínio e pode ter entrado antes pela porta de serviço — mas não usa figurino dourado nem teria a serra embrulhada numa luva do coro; o glitter na varanda e o roteiro obcecado são de Bianca.',
     ],
-    'scoring' => ['culprit' => 5, 'motive' => 1, 'clue' => 1],
+    'scoring' => ['culprit' => 5, 'motive' => 2, 'clue' => 1],
 ];

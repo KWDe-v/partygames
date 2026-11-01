@@ -7,7 +7,7 @@ defined('APP_ROOT') || exit;
 return [
     'id' => 'circo',
     'title' => 'A Queda no Circo Estrela',
-    'difficulty' => 'Médio',
+    'difficulty' => 'Difícil',
     'intro' => 'No ensaio das 16h do Circo Estrela, o trapezista Dante Moreno errou um salto e caiu na rede de segurança — que se soltou. Ele sobreviveu com o braço quebrado e jura que a rede estava perfeita pela manhã.',
     'crime' => 'Os ganchos da rede de segurança foram soltos de propósito. Foi uma tentativa de ferir gravemente o trapezista.',
     'victim' => 'Dante Moreno, trapezista',
@@ -28,7 +28,7 @@ return [
     'clues' => [
         'c1' => ['title' => 'A rede solta', 'text' => 'Dois ganchos da rede foram desenganchados e os nós amarrados de novo de forma frouxa: a rede cederia com qualquer peso.', 'unlock' => ['type' => 'start']],
         'c2' => ['title' => 'Conferência diária', 'text' => 'Madame Zuleica conferiu a rede às 13h, como faz todos os dias, e assinou a ficha de segurança: estava perfeita.', 'unlock' => ['type' => 'start']],
-        'c3' => ['title' => 'Picadeiro fechado', 'text' => 'Entre 13h e 16h o picadeiro ficou trancado. A única pessoa que entrou foi o domador, para o ensaio com o tigre às 14h30.', 'unlock' => ['type' => 'time', 'at' => 0.3], 'important' => true],
+        'c3' => ['title' => 'Picadeiro fechado', 'text' => 'Entre 13h e 16h o picadeiro ficou trancado, mas a chave reserva fica pendurada na bilheteria, ao alcance de qualquer artista. O domador entrou às 14h30 para o ensaio com o tigre.', 'unlock' => ['type' => 'time', 'at' => 0.3], 'important' => true],
         'c4' => ['title' => 'Nós de jaula', 'text' => 'Os nós refeitos são do tipo usado para amarrar os portões das jaulas — não os nós de circo usados pelos montadores.', 'unlock' => ['type' => 'role', 'role' => 'perito']],
         'c5' => ['title' => 'Rivalidade no trapézio', 'text' => 'Comenta-se que Nina pediu várias vezes um número solo e foi negada por causa de Dante.', 'unlock' => ['type' => 'role', 'role' => 'jornalista']],
         'c6' => ['title' => 'O rascunho da denúncia', 'text' => 'No trailer de Dante há um rascunho de denúncia à proteção animal contra Igor, com fotos de animais machucados. Data: ontem.', 'unlock' => ['type' => 'search'], 'important' => true],
@@ -67,7 +67,7 @@ return [
         'culprit' => 'igor',
         'motive' => 'denuncia',
         'key_clues' => ['c3', 'c6', 'c7', 'c8'],
-        'explanation' => 'Igor Vasko maltratava os animais, e Dante preparava uma denúncia com fotos. Entre 13h e 16h o picadeiro ficou fechado, e só Igor entrou, com o tigre, às 14h30. Às 14h40 Tonico o viu mexendo nos ganchos com uma desculpa falsa: ele soltou dois ganchos e refez os nós com o tipo de nó das jaulas, para a rede ceder no salto de Dante. Um dos ganchos, com marcas de alicate, estava na caixa de ferramentas dele. Nina estava na clínica e Zuleica só tinha prejuízo com o acidente.',
+        'explanation' => 'Igor Vasko maltratava os animais, e Dante preparava uma denúncia com fotos. O picadeiro ficou fechado, e a chave reserva estava ao alcance de vários — mas quem refez os nós usou o tipo de nó das jaulas, que só o domador amarra, e um dos ganchos soltos, com marcas de alicate, estava na caixa de ferramentas dele. O motivo era calar a denúncia de maus-tratos que Dante preparava. Às 14h40 Tonico o viu mexendo nos ganchos com uma desculpa falsa. Nina sonhava com o número solo, mas estava na clínica das 13h às 16h30, e Zuleica só tinha prejuízo com o acidente.',
     ],
-    'scoring' => ['culprit' => 5, 'motive' => 1, 'clue' => 1],
+    'scoring' => ['culprit' => 5, 'motive' => 2, 'clue' => 1],
 ];

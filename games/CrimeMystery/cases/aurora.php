@@ -60,7 +60,7 @@ return [
         'a8' => ['title' => 'O crachá perdido', 'text' => 'Caio comunicou a perda do crachá às 14h. Às 15h, o diretor contou a Marcos que tinha achado o crachá no estacionamento e que o devolveria pessoalmente ao estagiário — mas nunca devolveu.', 'unlock' => ['type' => 'interrogation'], 'important' => true],
         'a9' => ['title' => 'Webinar ao vivo', 'text' => 'Renata apresentou um webinar das 18h30 às 19h15; a gravação mostra o rosto dela o tempo todo.', 'unlock' => ['type' => 'time', 'at' => 0.55]],
         'a10' => ['title' => 'Quem trouxe o café', 'text' => 'Às 18h30 o diretor passou pelos laboratórios oferecendo café a todos. Paula aceitou um copo.', 'unlock' => ['type' => 'interrogation'], 'important' => true],
-        'a11' => ['title' => 'Livro de ronda', 'text' => 'Marcos registrou a ronda no 3º andar das 18h35 às 19h05, com a assinatura do porteiro do andar a cada 10 minutos.', 'unlock' => ['type' => 'search']],
+        'a11' => ['title' => 'Livro de ronda', 'text' => 'Marcos registrou a ronda no 3º andar das 18h35 às 19h05, mas a assinatura do porteiro só aparece a cada 30 minutos — tempo de sobra para descer um lance de escada e voltar.', 'unlock' => ['type' => 'search']],
     ],
     'locations' => [
         'sala_seguranca' => ['name' => 'Sala de segurança', 'clue' => 'a6'],
@@ -95,7 +95,7 @@ return [
         'culprit' => 'sergio',
         'motive' => 'venda',
         'key_clues' => ['a6', 'a7', 'a8', 'a10'],
-        'explanation' => 'Sérgio Albuquerque fechou um acordo secreto com a Helix: receberia o pagamento depois de entregar uma cópia dos dados e destruir o original. Às 18h30 ofereceu café com sedativo a Paula; às 18h40 desligou a câmera do corredor pelo console, cuja senha só ele e Marcos tinham — e Marcos estava na ronda, com testemunha. Entrou às 18h48 com o crachá de Caio — que ele dizia ter achado no estacionamento e nunca devolveu — e apagou os dados às 18h52 com a sessão aberta de Paula, deixando no teclado o perfume do álcool em gel da diretoria. Renata estava no webinar e Caio já tinha ido embora.',
+        'explanation' => 'Sérgio Albuquerque fechou um acordo secreto com a Helix: receberia o pagamento depois de entregar uma cópia dos dados e destruir o original. Às 18h30 ofereceu café com sedativo a Paula; às 18h40 desligou a câmera do corredor pelo console. Marcos tinha a mesma senha e a ronda dele deixava brechas de meia hora — mas foi o crachá de Caio (que só Sérgio dizia ter achado e nunca devolveu), o contrato da Helix no lixo da sala dele e o café que ele mesmo serviu que fecham o cerco. Entrou às 18h48 com o crachá de Caio — que ele dizia ter achado no estacionamento e nunca devolveu — e apagou os dados às 18h52 com a sessão aberta de Paula, deixando no teclado o perfume do álcool em gel da diretoria. Renata estava no webinar e Caio já tinha ido embora.',
     ],
-    'scoring' => ['culprit' => 5, 'motive' => 1, 'clue' => 1],
+    'scoring' => ['culprit' => 5, 'motive' => 2, 'clue' => 1],
 ];

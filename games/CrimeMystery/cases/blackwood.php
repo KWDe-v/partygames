@@ -60,7 +60,7 @@ return [
         'c7' => ['title' => 'Anotação no talão de cheques', 'text' => 'No talão de Arthur, uma anotação recente: "H.P. — assinaturas falsas desde 2009? Ligar para o delegado amanhã cedo."', 'unlock' => ['type' => 'search'], 'important' => true],
         'c8' => ['title' => 'A discussão das 20h45', 'text' => 'Edmund ouviu Arthur gritar "Eu confiei em você durante vinte anos!" no corredor, às 20h45. Victor conhecia Arthur havia apenas cinco anos.', 'unlock' => ['type' => 'interrogation'], 'important' => true],
         'c9' => ['title' => 'Registro da estufa', 'text' => 'O sistema de irrigação registra a porta da estufa aberta das 20h50 às 22h05 e as luzes acesas manualmente às 21h10 — compatível com Tomás trabalhando lá.', 'unlock' => ['type' => 'time', 'at' => 0.6]],
-        'c10' => ['title' => 'Conta telefônica', 'text' => 'A extensão do jardim de inverno registra uma ligação de 38 minutos, das 21h02 às 21h40.', 'unlock' => ['type' => 'search']],
+        'c10' => ['title' => 'Conta telefônica', 'text' => 'A extensão do jardim de inverno registra uma ligação de 38 minutos, das 21h02 às 21h40 — mas a central não guarda quem segurou o fone: a chamada pode ter corrido sozinha.', 'unlock' => ['type' => 'search']],
         'c11' => ['title' => 'A partitura no piano', 'text' => 'A copeira Clara confirma ter ouvido o piano sem pausas das 21h às 22h e chegou a pedir silêncio a Edmund às 21h20.', 'unlock' => ['type' => 'search']],
     ],
     'locations' => [
@@ -84,7 +84,7 @@ return [
         ],
         'victor' => [
             ['id' => 'v1', 'question' => 'Por que vocês discutiram no jantar?', 'answer' => 'Arthur queria vetar a venda da importadora. Discussão de negócios, nada mais.'],
-            ['id' => 'v2', 'question' => 'Onde você estava entre 21h e 21h40?', 'answer' => 'Ao telefone com meu advogado, no jardim de inverno. Verifiquem a linha.'],
+            ['id' => 'v2', 'question' => 'Onde você estava entre 21h e 21h40?', 'answer' => 'Ao telefone com meu advogado, no jardim de inverno. A ligação foi longa... saí um pouco para fumar no corredor, admito, mas a linha ficou aberta.'],
             ['id' => 'v3', 'question' => 'Você devia dinheiro à vítima?', 'answer' => 'Devia. Paguei na semana passada; o comprovante está no meu e-mail.'],
         ],
         'tomas' => [
@@ -97,7 +97,7 @@ return [
         'culprit' => 'helena',
         'motive' => 'falsificacao',
         'key_clues' => ['c3', 'c6', 'c7', 'c8'],
-        'explanation' => 'Helena Prado falsificava a assinatura de Arthur em cheques havia anos. Naquela noite, ele a confrontou no corredor ("Eu confiei em você durante vinte anos!" — só Helena estava na casa havia tanto tempo) e anotou que chamaria o delegado pela manhã. Às 21h, ao reabastecer o conhaque — tarefa que só ela fazia, com a única outra chave do armário —, Helena dissolveu na garrafa os comprimidos de digoxina da falecida patroa, guardados por ela. O frasco vazio estava em sua gaveta e o laudo mostra pó de comprimido, não folhas: a dedaleira do jardim era apenas uma pista falsa. Victor estava ao telefone e Edmund ao piano, ambos com testemunhas; Tomás estava na estufa.',
+        'explanation' => 'Helena Prado falsificava a assinatura de Arthur em cheques havia anos. Naquela noite, ele a confrontou no corredor ("Eu confiei em você durante vinte anos!" — só Helena estava na casa havia tanto tempo) e anotou que chamaria o delegado pela manhã. Às 21h, ao reabastecer o conhaque — tarefa que só ela fazia, com a única outra chave do armário —, Helena dissolveu na garrafa os comprimidos de digoxina da falecida patroa, guardados por ela. O frasco vazio estava em sua gaveta e o laudo mostra pó de comprimido, não folhas: a dedaleira do jardim era apenas uma pista falsa. Victor tinha dívida e deixou a ligação correndo sozinha para fumar — mas só ele e Arthur tinham a chave do armário de bebidas, e quem a usou foi Helena, com o veneno que só ela guardava. Edmund tocou piano sem pausas, com testemunha; Tomás estava na estufa.',
     ],
-    'scoring' => ['culprit' => 5, 'motive' => 1, 'clue' => 1],
+    'scoring' => ['culprit' => 5, 'motive' => 2, 'clue' => 1],
 ];
